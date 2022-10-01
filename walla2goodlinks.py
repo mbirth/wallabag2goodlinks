@@ -5,10 +5,13 @@ import json
 import re
 from datetime import datetime
 
+WALLABAG_EXPORT = "Wallabag All articles.json"
+OUTPUT_FILE = "walla2goodlinks.json"
+
 # https://stackoverflow.com/questions/9662346/python-code-to-remove-html-tags-from-a-string
 CLEANR = re.compile(r"<.*?>")
 
-with open("Wallabag All articles.json", "rt") as f:
+with open(WALLABAG_EXPORT, "rt") as f:
     json_obj = json.load(f)
 
 output_obj = []
@@ -33,5 +36,5 @@ for rec in json_obj:
     print(repr(new_obj))
     output_obj.append(new_obj)
 
-with open("walla2goodlinks.json", "w") as f:
+with open(OUTPUT_FILE, "w") as f:
     json.dump(output_obj, f)
